@@ -44,7 +44,9 @@ else
     cd $CACHE_DIR
     GRADLE_URL="$GRADLE_DIST_URL$GRADLE_DIST.zip"
     echo -n "-----> Installing $GRADLE_DIST....."
-    curl --silent --location $GRADLE_URL | tar xz
+   # curl --silent --location $GRADLE_URL | tar xz
+    curl --silent --location $GRADLE_URL | unzip -a
+
     echo " done"
   fi
   BUILDCMD="gradle"
