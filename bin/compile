@@ -14,7 +14,7 @@ CACHE_DIR=$2
 
 GRADLE_DIST="gradle-1.11-bin"
 GRADLE_TASK="stage"
-GRADLE_DIST_URL="services.gradle.org/distributions"
+#GRADLE_DIST_URL="services.gradle.org/distributions"
 
 curl --silent --location "${JVM_BUILDPACK_COMMON_URL}" | tar xz
 . bin/java
@@ -45,8 +45,8 @@ else
     GRADLE_URL="$GRADLE_DIST_URL$GRADLE_DIST.zip"
     echo -n "-----> Installing $GRADLE_DIST....."
    # curl --silent --location $GRADLE_URL | tar xz
-   apt-get install unzip
-    curl --silent --location $GRADLE_URL | unzip -a
+
+   curl -L http://services.gradle.org/distributions/gradle-1.11-bin.zip>> gradle-1.11-bin.zip && jar xvf gradle-1.11-bin.zip
 
     echo " done"
   fi
