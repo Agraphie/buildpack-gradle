@@ -60,7 +60,7 @@ cd $BUILD_DIR
 pwd
 
 export PATH=$CACHE_DIR/$GRADLE_DIST/bin:$PATH
- 
+ls -la
 # build app
 echo "-----> Building Gradle app..."
 echo "       WARNING: The Gradle buildpack is currently in Beta."
