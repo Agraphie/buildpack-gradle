@@ -58,7 +58,7 @@ BUILDCMD="$BUILDCMD $GRADLE_TASK"
 
 cd $BUILD_DIR/initial
 ls -la 
-ls -la target
+
 export PATH=$CACHE_DIR/$GRADLE_DIST/bin:$PATH
 
 # build app
@@ -76,3 +76,6 @@ fi
 PROFILE_PATH="$BUILD_DIR/.profile.d/gradle.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 echo 'export PATH="/app/.jdk/bin:$PATH"' >> $PROFILE_PATH
+ls -la
+cd ..
+ls -la
