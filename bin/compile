@@ -46,8 +46,8 @@ else
     echo -n "-----> Installing $GRADLE_DIST....."
    # curl --silent --location $GRADLE_URL | tar xz
 
-   curl -L http://services.gradle.org/distributions/gradle-1.11-bin.zip>> gradle-1.11-bin.zip && jar xvf gradle-1.11-bin.zip
-
+   curl -L http://services.gradle.org/distributions/gradle-1.11-bin.zip>> gradle-1.11-bin.zip && jar xvf gradle-1.11-bin.zip > /dev/null
+  ls -l
     echo " done"
   fi
   BUILDCMD="gradle"
@@ -56,6 +56,7 @@ fi
 BUILDCMD="$BUILDCMD $GRADLE_TASK"
 
 cd $BUILD_DIR
+ls -l
 
 export PATH=$CACHE_DIR/$GRADLE_DIST/bin:$PATH
  
