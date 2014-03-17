@@ -48,7 +48,7 @@ else
    # curl --silent --location $GRADLE_URL | tar xz
 
    curl -Ls $GRADLE_URL >> gradle-1.11-bin.zip && jar xvf gradle-1.11-bin.zip > /dev/null
-  pwd
+    chmod +x ./gradle
     echo " done"
   fi
   BUILDCMD="gradle"
