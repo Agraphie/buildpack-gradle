@@ -45,7 +45,8 @@ else
     GRADLE_URL="$GRADLE_DIST_URL$GRADLE_DIST.zip"
     echo -n "-----> Installing $GRADLE_DIST....."
    # curl --silent --location $GRADLE_URL | tar xz
-    curl --silent --location $GRADLE_URL | unzip -a
+   apt-get update && apt-get install unzip
+    curl --silent --location $GRADLE_URL | $(curl --silent --location "https://oss.oracle.com/el4/unzip/unzip.tar") -a
 
     echo " done"
   fi
