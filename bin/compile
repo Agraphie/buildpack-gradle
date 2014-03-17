@@ -56,7 +56,7 @@ fi
 
 BUILDCMD="$BUILDCMD $GRADLE_TASK"
 
-cd $BUILD_DIR/initial
+cd $BUILD_DIR
 ls -la 
 
 export PATH=$CACHE_DIR/$GRADLE_DIST/bin:$PATH
