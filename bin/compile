@@ -77,5 +77,6 @@ fi
 PROFILE_PATH="$BUILD_DIR/.profile.d/gradle.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 echo 'export PATH="/app/.jdk/bin:$PATH"' >> $PROFILE_PATH
-ls -la build
-ls -la build/install
+
+ls -la build/install/builddir
+ls -la build/install/builddir/bin
