@@ -60,7 +60,8 @@ BUILDCMD="$BUILDCMD $GRADLE_TASK"
 
 cd $BUILD_DIR
 
-export PATH=$CACHE_DIR/$GRADLE_DIST/bin:$PATH
+export PATH=$PATH:$CACHE_DIR/$GRADLE_DIST/bin
+hash
 
 # build app
 echo "-----> Building Gradle app..."
