@@ -51,7 +51,7 @@ else
 
    curl -Ls $GRADLE_URL >> gradle-1.11-bin.zip && jar xvf gradle-1.11-bin.zip > /dev/null
     hash gradle 2>/dev/null || { echo 'export PATH="$CACHE_DIR/$GRADLE_DIST/bin:$PATH"' >> $PROFILE_PATH; 
-    echo "gradle added to path"; }
+    echo -n "-----> gradle added to path"; }
     chmod +x ./$GRADLE_DIST/bin/gradle
     fi
   BUILDCMD="gradle"
