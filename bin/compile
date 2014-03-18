@@ -40,6 +40,7 @@ export GRADLE_USER_HOME=$CACHE_DIR
 if [ -f $BUILD_DIR/gradlew ] ; then
   echo 'using gradlew'
   BUILDCMD="./gradlew"
+  chmod +x $BUILD_DIR/gradlew
 else
   if [ ! -d $CACHE_DIR/$GRADLE_DIST ] ; then
   echo $CACHE_DIR
@@ -49,9 +50,10 @@ else
    # curl --silent --location $GRADLE_URL | tar xz
 
    curl -Ls $GRADLE_URL >> gradle-1.11-bin.zip && jar xvf gradle-1.11-bin.zip > /dev/null
-    echo 'export PATH="$CACHE_DIR/$GRADLE_DIST/bin:$PATH"' >> $PROFILE_PATH
-    echo " done"
-  fi
+    hash gradle 2>/dev/null || { echo 'export PATH="$CACHE_DIR/$GRADLE_DIST/bin:$PATH"' >> $PROFILE_PATH; 
+    echo "gradle added to path"; }
+    chmod +x ./$GRADLE_DIST/bin/gradle
+    fi
   BUILDCMD="gradle"
 fi
 
