@@ -51,7 +51,8 @@ cd $CACHE_DIR
 
     cp -R $GRADLE_DIST/ /app/.jdk/
 
-
+    ls -la
+    ls -la /app/.jdk
     chmod +x ./$GRADLE_DIST/bin/gradle
     chmod +x /app/.jdk/$GRADLE_DIST/bin/gradle
     fi
