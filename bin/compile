@@ -47,8 +47,9 @@ cd $CACHE_DIR
     GRADLE_URL="$GRADLE_DIST_URL$GRADLE_DIST-bin.zip"
     echo -n "-----> Installing $GRADLE_DIST....."
    # curl --silent --location $GRADLE_URL | tar xz
-    cp -R $GRADLE_DIST/ /app/.gradleDist
     curl -Ls $GRADLE_URL >> gradle-1.11-bin.zip && jar xvf gradle-1.11-bin.zip > /dev/null
+    ls -l
+    cp -R $GRADLE_DIST/ /app/.gradleDist
     chmod +x ./$GRADLE_DIST/bin/gradle
     fi
 BUILDCMD="gradle"
