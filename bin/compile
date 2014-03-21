@@ -59,6 +59,7 @@ BUILDCMD="$BUILDCMD $GRADLE_TASK"
 
 cd $BUILD_DIR
 ls -la
+ls -la ..
 ls -la ../buildpack-cache
 export PATH=$PATH:$CACHE_DIR/$GRADLE_DIST/bin
 
