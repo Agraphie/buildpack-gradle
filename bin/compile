@@ -37,6 +37,7 @@ fi
 
 export GRADLE_USER_HOME=$CACHE_DIR
 ls -la $CACHE_DIR
+echo $CACHE_DIR
 if [ -f $BUILD_DIR/gradlew ] ; then
   echo 'using gradlew'
   BUILDCMD="./gradlew"
@@ -44,7 +45,6 @@ if [ -f $BUILD_DIR/gradlew ] ; then
 else
   if [ ! -d $CACHE_DIR/$GRADLE_DIST ] ; then
     cd $CACHE_DIR
-    pwd
     GRADLE_URL="$GRADLE_DIST_URL$GRADLE_DIST-bin.zip"
     echo -n "-----> Installing $GRADLE_DIST....."
    # curl --silent --location $GRADLE_URL | tar xz
