@@ -49,9 +49,8 @@ else
     echo -n "-----> Installing $GRADLE_DIST....."
    # curl --silent --location $GRADLE_URL | tar xz
 
-   curl -Ls $GRADLE_URL >> gradle-1.11-bin.zip && jar xvf gradle-1.11-bin.zip > /dev/null
-  compgen -ac gradle
-  echo 'export PATH="$CACHE_DIR/$GRADLE_DIST/bin:$PATH"' >> $PROFILE_PATH
+    curl -Ls $GRADLE_URL >> gradle-1.11-bin.zip && jar xvf gradle-1.11-bin.zip > /dev/null
+    echo 'export PATH="$CACHE_DIR/$GRADLE_DIST/bin:$PATH"' >> $PROFILE_PATH
 
     chmod +x ./$GRADLE_DIST/bin/gradle
     fi
