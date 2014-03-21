@@ -50,9 +50,7 @@ else
    # curl --silent --location $GRADLE_URL | tar xz
 
    curl -Ls $GRADLE_URL >> gradle-1.11-bin.zip && jar xvf gradle-1.11-bin.zip > /dev/null
-  compgen -ac gradle | grep -Fx gradle | wc -w | awk '{ if($1 < 1){echo 'export 
-    PATH="$CACHE_DIR/$GRADLE_DIST/bin:$PATH"' >> $PROFILE_PATH; 
-    echo -n "-----> gradle added to path} }'
+  compgen -ac gradle | grep -Fx gradle | wc -w | awk '{ if($1 < 1){echo 'export PATH="$CACHE_DIR/$GRADLE_DIST/bin:$PATH"' >> $PROFILE_PATH; echo -n "-----> gradle added to path} }'
     chmod +x ./$GRADLE_DIST/bin/gradle
     fi
   BUILDCMD="gradle"
