@@ -19,12 +19,12 @@ GRADLE_TASK="stage"
 curl --silent --location "${JVM_BUILDPACK_COMMON_URL}" | tar xz
 . bin/java
 
-# create default system.properties 
+# create default system.properties
 if [ ! -f ${BUILD_DIR}/system.properties ]; then
-  echo "java.runtime.version=1.6" > ${BUILD_DIR}/system.properties
+echo "java.runtime.version=1.6" > ${BUILD_DIR}/system.properties
 fi
 
-# install JDK 
+# install JDK
 javaVersion=$(detect_java_version ${BUILD_DIR})
 echo -n "-----> Installing OpenJDK ${javaVersion}... "
 install_java ${BUILD_DIR} ${javaVersion}
@@ -32,19 +32,18 @@ jdk_overlay ${BUILD_DIR}
 echo "done"
 
 if [ ! -d $CACHE_DIR ] ; then
-  mkdir $CACHE_DIR
+mkdir $CACHE_DIR
 fi
 
 export GRADLE_USER_HOME=$CACHE_DIR
-ls -la $CACHE_DIR
-echo $CACHE_DIR
+
 if [ -f $BUILD_DIR/gradlew ] ; then
-  echo 'using gradlew'
+echo 'using gradlew'
   BUILDCMD="./gradlew"
   chmod +x $BUILD_DIR/gradlew
 else
-  if [ ! -d $CACHE_DIR/$GRADLE_DIST ] ; then
-    cd $CACHE_DIR
+if [ ! -d $CACHE_DIR/$GRADLE_DIST ] ; then
+cd $CACHE_DIR
     GRADLE_URL="$GRADLE_DIST_URL$GRADLE_DIST-bin.zip"
     echo -n "-----> Installing $GRADLE_DIST....."
    # curl --silent --location $GRADLE_URL | tar xz
@@ -52,26 +51,28 @@ else
     curl -Ls $GRADLE_URL >> gradle-1.11-bin.zip && jar xvf gradle-1.11-bin.zip > /dev/null
     chmod +x ./$GRADLE_DIST/bin/gradle
     fi
-  BUILDCMD="gradle"
+BUILDCMD="gradle"
 fi
 
 BUILDCMD="$BUILDCMD $GRADLE_TASK"
 
 cd $BUILD_DIR
 
+export PATH=$PATH:$CACHE_DIR/$GRADLE_DIST/bin
+
+
 # build app
 echo "-----> Building Gradle app..."
-echo "       WARNING: The Gradle buildpack is currently in Beta."
+echo " WARNING: The Gradle buildpack is currently in Beta."
 echo "-----> executing $BUILDCMD"
 
-$BUILDCMD 2>&1 | sed -u 's/^/       /'
+$BUILDCMD 2>&1 | sed -u 's/^/ /'
 
 if [ "${PIPESTATUS[*]}" != "0 0" ]; then
-  echo " !     Failed to build app"
+echo " ! Failed to build app"
   exit 1
 fi
 
 PROFILE_PATH="$BUILD_DIR/.profile.d/gradle.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 echo 'export PATH="/app/.jdk/bin:$PATH"' >> $PROFILE_PATH
-echo 'export PATH="$CACHE_DIR/$GRADLE_DIST/bin:$PATH"' >> $PROFILE_PATH
