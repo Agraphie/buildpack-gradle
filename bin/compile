@@ -19,7 +19,6 @@ GRADLE_TASK="stage"
 curl --silent --location "${JVM_BUILDPACK_COMMON_URL}" | tar xz
 . bin/java
 
-ls -la bin
 # create default system.properties 
 if [ ! -f ${BUILD_DIR}/system.properties ]; then
   echo "java.runtime.version=1.6" > ${BUILD_DIR}/system.properties
@@ -37,7 +36,7 @@ if [ ! -d $CACHE_DIR ] ; then
 fi
 
 export GRADLE_USER_HOME=$CACHE_DIR
-
+ls -la $CACHE_DIR
 if [ -f $BUILD_DIR/gradlew ] ; then
   echo 'using gradlew'
   BUILDCMD="./gradlew"
@@ -45,6 +44,7 @@ if [ -f $BUILD_DIR/gradlew ] ; then
 else
   if [ ! -d $CACHE_DIR/$GRADLE_DIST ] ; then
     cd $CACHE_DIR
+    pwd
     GRADLE_URL="$GRADLE_DIST_URL$GRADLE_DIST-bin.zip"
     echo -n "-----> Installing $GRADLE_DIST....."
    # curl --silent --location $GRADLE_URL | tar xz
@@ -58,7 +58,7 @@ fi
 BUILDCMD="$BUILDCMD $GRADLE_TASK"
 
 cd $BUILD_DIR
-ls -la
+
 export PATH=$PATH:$CACHE_DIR/$GRADLE_DIST/bin
 
 
@@ -78,4 +78,3 @@ PROFILE_PATH="$BUILD_DIR/.profile.d/gradle.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 echo 'export PATH="/app/.jdk/bin:$PATH"' >> $PROFILE_PATH
 source ~/.bashrc
-ls -la
