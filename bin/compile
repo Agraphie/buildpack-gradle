@@ -36,22 +36,23 @@ if [ ! -d $CACHE_DIR ] ; then
 fi
 
 export GRADLE_USER_HOME=$CACHE_DIR
-
+PROFILE_PATH="$BUILD_DIR/.profile.d/gradle.sh"
+mkdir -p $(dirname $PROFILE_PATH)
 if [ -f $BUILD_DIR/gradlew ] ; then
   echo 'using gradlew'
   BUILDCMD="./gradlew"
   chmod +x $BUILD_DIR/gradlew
 else
   if [ ! -d $CACHE_DIR/$GRADLE_DIST ] ; then
-  echo $CACHE_DIR
     cd $CACHE_DIR
     GRADLE_URL="$GRADLE_DIST_URL$GRADLE_DIST-bin.zip"
     echo -n "-----> Installing $GRADLE_DIST....."
    # curl --silent --location $GRADLE_URL | tar xz
 
    curl -Ls $GRADLE_URL >> gradle-1.11-bin.zip && jar xvf gradle-1.11-bin.zip > /dev/null
-  compgen -ac gradle | grep -Fx gradle | wc -w | awk '{ if($1 < 1){print 'export PATH="$CACHE_DIR/$GRADLE_DIST/bin:$PATH"' >> $PROFILE_PATH; print -n "-----> gradle added to path"} }'
   compgen -ac gradle
+  echo 'export PATH="$CACHE_DIR/$GRADLE_DIST/bin:$PATH"' >> $PROFILE_PATH
+
     chmod +x ./$GRADLE_DIST/bin/gradle
     fi
   BUILDCMD="gradle"
@@ -76,6 +77,5 @@ if [ "${PIPESTATUS[*]}" != "0 0" ]; then
   exit 1
 fi
 
-PROFILE_PATH="$BUILD_DIR/.profile.d/gradle.sh"
-mkdir -p $(dirname $PROFILE_PATH)
+
 echo 'export PATH="/app/.jdk/bin:$PATH"' >> $PROFILE_PATH
