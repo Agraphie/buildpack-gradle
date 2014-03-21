@@ -78,5 +78,4 @@ PROFILE_PATH="$BUILD_DIR/.profile.d/gradle.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 echo 'export PATH="/app/.jdk/bin:$PATH"' >> $PROFILE_PATH
 echo 'export PATH="'$CACHE_DIR/$GRADLE_DIST'/bin:$PATH"' >> $PROFILE_PATH
-ls -la /app/.gradleDist
-chmod +x ./app/.gradleDist/bin/gradle
+chmod +x /app/.gradleDist/bin/gradle
