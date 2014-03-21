@@ -49,8 +49,7 @@ cd $CACHE_DIR
    # curl --silent --location $GRADLE_URL | tar xz
 
     curl -Ls $GRADLE_URL >> gradle-1.11-bin.zip && jar xvf gradle-1.11-bin.zip > /dev/null
-        chmod +x ./$GRADLE_DIST/bin/gradle
-    cp -R ./$GRADLE_DIST/ /app/.gradleDist
+    chmod +x ./$GRADLE_DIST/bin/gradle
     fi
 BUILDCMD="gradle"
 fi
@@ -58,6 +57,9 @@ fi
 BUILDCMD="$BUILDCMD $GRADLE_TASK"
 
 cd $BUILD_DIR
+
+export PATH=$PATH:$CACHE_DIR/$GRADLE_DIST/bin
+
 
 # build app
 echo "-----> Building Gradle app..."
@@ -74,6 +76,5 @@ fi
 PROFILE_PATH="$BUILD_DIR/.profile.d/gradle.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 echo 'export PATH="/app/.jdk/bin:$PATH"' >> $PROFILE_PATH
-echo 'export PATH="/app/.gradleDist/bin:$PATH"' >> $PROFILE_PATH
-ls -la /app/.gradleDist
-chmod +x ./app/.gradleDist/bin/gradle
+echo "$CACHE_DIR/$GRADLE_DIST"
+echo 'export PATH="'$CACHE_DIR/$GRADLE_DIST'/bin:$PATH"' >> $PROFILE_PATH
