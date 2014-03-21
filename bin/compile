@@ -49,6 +49,7 @@ cd $CACHE_DIR
    # curl --silent --location $GRADLE_URL | tar xz
 
     curl -Ls $GRADLE_URL >> gradle-1.11-bin.zip && jar xvf gradle-1.11-bin.zip > /dev/null
+        chmod +x ./$GRADLE_DIST/bin/gradle
     cp -R ./$GRADLE_DIST/ /app/.gradleDist
     fi
 BUILDCMD="gradle"
