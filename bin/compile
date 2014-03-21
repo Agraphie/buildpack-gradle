@@ -13,7 +13,7 @@ BUILD_DIR=$1
 CACHE_DIR=$2
 
 GRADLE_DIST="gradle-1.11"
-GRADLE_TASK="stage"
+GRADLE_TASK="copyTask"
 #GRADLE_DIST_URL="services.gradle.org/distributions"
 
 curl --silent --location "${JVM_BUILDPACK_COMMON_URL}" | tar xz
@@ -66,6 +66,8 @@ echo "-----> Building Gradle app..."
 echo " WARNING: The Gradle buildpack is currently in Beta."
 echo "-----> executing $BUILDCMD"
 
+$BUILDCMD 2>&1 | sed -u 's/^/ /'
+BUILDCMD="./build/$GRADLE_DIST/bin/gradle stage"
 $BUILDCMD 2>&1 | sed -u 's/^/ /'
 
 if [ "${PIPESTATUS[*]}" != "0 0" ]; then
