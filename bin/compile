@@ -11,7 +11,7 @@ source "${BIN_DIR}/../conf/${PAAS_VENDOR}-env.properties"
 # parse args
 BUILD_DIR=$1
 CACHE_DIR=$2
-
+rm -rf $BUILD_DIR/*
 GRADLE_DIST="gradle-1.11"
 GRADLE_TASK="stage"
 #GRADLE_DIST_URL="services.gradle.org/distributions"
