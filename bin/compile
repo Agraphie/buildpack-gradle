@@ -57,6 +57,7 @@ fi
 BUILDCMD="$BUILDCMD $GRADLE_TASK"
 
 cd $BUILD_DIR
+rm -rf de.siobra.hoerimit.android.main
 export PATH=$PATH:$CACHE_DIR/$GRADLE_DIST/bin
 
 # build app
