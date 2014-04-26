@@ -72,6 +72,9 @@ echo " ! Failed to build app"
   exit 1
 fi
 
+ls -la build/install/builddir
+ls -la build/install/builddir/bin
+
 PROFILE_PATH="$BUILD_DIR/.profile.d/gradle.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 echo 'export PATH="/app/.jdk/bin:$PATH"' >> $PROFILE_PATH
