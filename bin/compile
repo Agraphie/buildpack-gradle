@@ -72,8 +72,6 @@ echo " ! Failed to build app"
   exit 1
 fi
 
-ls -la build/install
-ls -la build/install/springboot-gradle-cctrl-example/bin
 PROFILE_PATH="$BUILD_DIR/.profile.d/gradle.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 echo 'export PATH="/app/.jdk/bin:$PATH"' >> $PROFILE_PATH
