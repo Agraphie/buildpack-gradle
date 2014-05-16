@@ -76,4 +76,3 @@ fi
 PROFILE_PATH="$BUILD_DIR/.profile.d/gradle.sh"
 mkdir -p $(dirname $PROFILE_PATH)
 echo 'export PATH="/app/.jdk/bin:$PATH"' >> $PROFILE_PATH
-ls -la de.siobra.boatfinder.restserver/build/install/bin/
